@@ -3,10 +3,12 @@ const bodyParser = require('body-parser');
 
 const usersControllers = require('./controllers/usersControllers');
 const categoriesControllers = require('./controllers/categoriesControllers');
+const blogPostsControllers = require('./controllers/blogPostsControllers');
 
 const userValidation = require('./middlewares/userValidation');
 const loginValidation = require('./middlewares/loginValidation');
 const tokenValidation = require('./middlewares/tokenValidation');
+const postValidation = require('./middlewares/postValidation');
 
 const app = express();
 
@@ -25,7 +27,8 @@ app.post('/login', loginValidation, usersControllers.login);
 app.use(tokenValidation);
 
 app.get('/user', usersControllers.getAllUsers);
-app.get('/user/:id', usersControllers.getUser);
-
 app.post('/categories', categoriesControllers.createCategory);
 app.get('/categories', categoriesControllers.getAllCategories);
+app.post('/post', postValidation, blogPostsControllers.createPost);
+
+app.get('/user/:id', usersControllers.getUser);

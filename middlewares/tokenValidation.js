@@ -8,7 +8,8 @@ module.exports = async (req, res, next) => {
     if (!authorization) return res.status(401).json({ message: 'Token not found' });
 
     try {
-    jwt.verify(authorization, JWT_SECRET);
+    const { id } = jwt.verify(authorization, JWT_SECRET);
+    req.body = { userId: id, ...req.body };
 
     next();
     } catch (_) {
