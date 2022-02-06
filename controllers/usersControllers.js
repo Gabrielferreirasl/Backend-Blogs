@@ -1,9 +1,9 @@
-const blogServices = require('../services/blogServices');
+const usersServices = require('../services/usersServices');
 
 const createUser = async (req, res) => {
     const { displayName, email, password, image } = req.body;
     
-    const token = await blogServices.createUser({ displayName, email, password, image });
+    const token = await usersServices.createUser({ displayName, email, password, image });
 
     if (!token) return res.status(409).json({ message: 'User already registered' });
 
@@ -13,7 +13,7 @@ const createUser = async (req, res) => {
 const login = async (req, res) => {
     const { email, password } = req.body;
 
-    const token = await blogServices.login({ email, password });
+    const token = await usersServices.login({ email, password });
 
     if (!token) return res.status(400).json({ message: 'Invalid fields' });
 
@@ -21,7 +21,7 @@ const login = async (req, res) => {
 };
 
 const getAllUsers = async (_req, res) => {
-    const users = await blogServices.getAllUsers();
+    const users = await usersServices.getAllUsers();
 
     res.status(200).json(users);
 };
@@ -29,7 +29,7 @@ const getAllUsers = async (_req, res) => {
 const getUser = async (req, res) => {
     const { id } = req.params;
 
-    const user = await blogServices.getUser(+id);
+    const user = await usersServices.getUser(+id);
 
     if (!user) return res.status(404).json({ message: 'User does not exist' });
 

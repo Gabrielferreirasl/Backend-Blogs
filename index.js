@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const blogControllers = require('./controllers/blogControllers');
+const usersControllers = require('./controllers/usersControllers');
+const categoriesControllers = require('./controllers/categoriesControllers');
 
 const userValidation = require('./middlewares/userValidation');
 const loginValidation = require('./middlewares/loginValidation');
@@ -18,10 +19,12 @@ app.get('/', (_request, response) => {
   response.send();
 });
 
-app.post('/user', userValidation, blogControllers.createUser);
-app.post('/login', loginValidation, blogControllers.login);
+app.post('/user', userValidation, usersControllers.createUser);
+app.post('/login', loginValidation, usersControllers.login);
 
 app.use(tokenValidation);
 
-app.get('/user', blogControllers.getAllUsers);
-app.get('/user/:id', blogControllers.getUser);
+app.get('/user', usersControllers.getAllUsers);
+app.get('/user/:id', usersControllers.getUser);
+
+app.post('/categories', categoriesControllers.createCategory);
