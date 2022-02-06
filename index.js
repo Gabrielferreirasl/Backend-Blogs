@@ -28,3 +28,4 @@ app.get('/user', usersControllers.getAllUsers);
 app.get('/user/:id', usersControllers.getUser);
 
 app.post('/categories', categoriesControllers.createCategory);
+app.get('/categories', categoriesControllers.getAllCategories);
