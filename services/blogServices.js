@@ -10,15 +10,33 @@ const createUser = async ({ displayName, email, password, image }) => {
     if (validateEmail) return null;
 
     const digest = await argon.hash(password, { type: argon.argon2id });
-    const token = jwt.sign({ displayName, email, password, image }, JWT_SECRET, {
+    const token = jwt.sign({ displayName, email, password: digest, image }, JWT_SECRET, {
         algorithm: 'HS256',
         expiresIn: '1d',
       });
 
-    await User.create({ displayName, email, password: digest, image });
+    await User.create({ displayName, email, password, image });
     return token;
+};
+
+const login = async ({ email, password }) => {
+    // const validateEmail = await User.findOne({ where: { email } });
+    // if (!validateEmail || !argon.verify(validateEmail.password, password)) return null;
+    // teste falha usando hash
+
+    const validateEmail = await User.findOne({ where: { email, password } });
+
+    if (!validateEmail) return null;
+
+    const token = jwt.sign({ email, password }, JWT_SECRET, {
+        algorithm: 'HS256',
+        expiresIn: '1d',
+      });
+
+      return token;
 };
 
 module.exports = {
     createUser,
+    login,
 };

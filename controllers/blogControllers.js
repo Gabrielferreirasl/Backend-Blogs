@@ -10,6 +10,17 @@ const createUser = async (req, res) => {
     res.status(201).json({ token });
 };
 
+const login = async (req, res) => {
+    const { email, password } = req.body;
+
+    const token = await blogServices.login({ email, password });
+
+    if (!token) return res.status(400).json({ message: 'Invalid fields' });
+
+    res.status(200).json({ token });
+};
+
 module.exports = {
     createUser,
+    login,
 };
