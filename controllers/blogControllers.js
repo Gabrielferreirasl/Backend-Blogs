@@ -20,7 +20,14 @@ const login = async (req, res) => {
     res.status(200).json({ token });
 };
 
+const getAllUsers = async (_req, res) => {
+    const users = await blogServices.getAllUsers();
+
+    res.status(200).json(users);
+};
+
 module.exports = {
     createUser,
     login,
+    getAllUsers,
 };
