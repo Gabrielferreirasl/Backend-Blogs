@@ -42,8 +42,15 @@ const getAllUsers = async () => {
     return users;
 };
 
+const getUser = async (id) => {
+    const users = await User.findByPk(id);
+
+    return users;
+};
+
 module.exports = {
     createUser,
     login,
     getAllUsers,
+    getUser,
 };

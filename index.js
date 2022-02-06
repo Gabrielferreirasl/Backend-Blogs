@@ -24,3 +24,4 @@ app.post('/login', loginValidation, blogControllers.login);
 app.use(tokenValidation);
 
 app.get('/user', blogControllers.getAllUsers);
+app.get('/user/:id', blogControllers.getUser);
