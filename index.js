@@ -30,5 +30,6 @@ app.get('/user', usersControllers.getAllUsers);
 app.post('/categories', categoriesControllers.createCategory);
 app.get('/categories', categoriesControllers.getAllCategories);
 app.post('/post', postValidation, blogPostsControllers.createPost);
+app.get('/post', blogPostsControllers.getAllPosts);
 
 app.get('/user/:id', usersControllers.getUser);
