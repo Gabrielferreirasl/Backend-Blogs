@@ -32,8 +32,10 @@ app.post('/categories', categoriesControllers.createCategory);
 app.get('/categories', categoriesControllers.getAllCategories);
 app.post('/post', postValidation, blogPostsControllers.createPost);
 app.get('/post', blogPostsControllers.getAllPosts);
+app.get('/post/search', blogPostsControllers.search);
 
 app.put('/post/:id', editPostValidation, blogPostsControllers.editPost);
 app.delete('/post/:id', blogPostsControllers.deletePost);
+app.delete('/user/me', usersControllers.deleteUser);
 app.get('/post/:id', blogPostsControllers.getPost);
 app.get('/user/:id', usersControllers.getUser);
