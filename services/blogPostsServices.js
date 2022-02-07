@@ -36,8 +36,42 @@ const getPost = async (id) => {
     return post;
 };
 
+const editPost = async ({ title, content, userId, id }) => {
+
+    if (!id || id !== userId) return { message: 'Unauthorized user', code: 401 };
+
+    await BlogPost.update(
+        { title, content },
+        { where: { id } },
+    );
+
+    const post = await BlogPost.findByPk(id, {
+        include: [
+        { model: Category, as: 'categories', through: { attributes: [] } },
+        ],
+    });
+
+    return { post };
+};
+
+const deletePost = async ({ userId, id }) => {
+    const post = await getPost(id);
+
+    if (!post) return { message: 'Post does not exist', code: 404 };
+
+    if (id !== userId) return { message: 'Unauthorized user', code: 401 };
+
+    await BlogPost.destroy(
+        { where: { id } },
+    );
+
+    return {};
+};
+
 module.exports = {
     createPost,
     getAllPosts,
     getPost,
+    editPost,
+    deletePost,
 };

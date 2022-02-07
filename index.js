@@ -9,6 +9,7 @@ const userValidation = require('./middlewares/userValidation');
 const loginValidation = require('./middlewares/loginValidation');
 const tokenValidation = require('./middlewares/tokenValidation');
 const postValidation = require('./middlewares/postValidation');
+const editPostValidation = require('./middlewares/editPostValidation');
 
 const app = express();
 
@@ -32,5 +33,7 @@ app.get('/categories', categoriesControllers.getAllCategories);
 app.post('/post', postValidation, blogPostsControllers.createPost);
 app.get('/post', blogPostsControllers.getAllPosts);
 
+app.put('/post/:id', editPostValidation, blogPostsControllers.editPost);
+app.delete('/post/:id', blogPostsControllers.deletePost);
 app.get('/post/:id', blogPostsControllers.getPost);
 app.get('/user/:id', usersControllers.getUser);
