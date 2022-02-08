@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const argon = require('argon2');
+// const argon = require('argon2');
 const { User } = require('../models');
 
 const { JWT_SECRET } = process.env;
@@ -11,8 +11,8 @@ const createUser = async ({ displayName, email, password, image }) => {
 
     const { id } = await User.create({ displayName, email, password, image });
 
-    const digest = await argon.hash(password, { type: argon.argon2id });
-    const token = jwt.sign({ id, email, password: digest }, JWT_SECRET, {
+    // const digest = await argon.hash(password, { type: argon.argon2id });
+    const token = jwt.sign({ id, email, password }, JWT_SECRET, {
         algorithm: 'HS256',
         expiresIn: '1d',
       });
