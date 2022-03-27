@@ -1,6 +1,6 @@
 ## Description
 
-In this project I developed an API for a CRUD blog posts (with Sequelize),
+In this project I developed an API with Express for a CRUD blog posts (with Sequelize),
 endpoints (following REST principles) that are connected to the database,
 the architecture pattern used was MSC.
 
