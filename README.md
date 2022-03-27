@@ -4,7 +4,7 @@ In this project I developed an API for a CRUD blog posts (with Sequelize),
 endpoints (following REST principles) that are connected to the database,
 the architecture pattern used was MSC.
 
-## When Downloading the project:
+## After downloading the project:
 create an .env file to connect to your local database:
 ```
 MYSQL_USER=yourUser
