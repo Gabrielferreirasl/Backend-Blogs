@@ -5,7 +5,7 @@ endpoints (following REST principles) that are connected to the database,
 the architecture pattern used was MSC.
 
 ## After downloading the project:
-create an .env file to connect to your local database:
+create an .env file to connect to your local MySQL database:
 ```
 MYSQL_USER=yourUser
 MYSQL_PASSWORD=yourPass
